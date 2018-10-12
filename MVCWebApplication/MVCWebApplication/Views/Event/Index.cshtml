@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MVCWebApplication.Models.EventInfo>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Event Listings</h2>
+<h6>Highlighted prices indicate lowest priced events in that country.</h6>
+
+@if (Model.Count() > 0)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Artist)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Venue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tickets)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MinPrice)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Artist)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Venue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tickets)
+                </td>
+                @if (item.MinPrice.Contains("**"))
+                {
+                    <td style="background-color:yellow">
+                        @Html.DisplayFor(modelItem => item.MinPrice)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MinPrice)
+                    </td>
+                }
+                <td>@Html.ActionLink("See Tickets", "Tickets", "Event", new { id = item.ID }, null)</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                No events found.
+            </th>
+        </tr>
+    </table>
+}

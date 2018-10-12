@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Event Booking</h1>
+    <p class="lead">This is a MVC web application that helps users view up-coming events for their favorite artists, sports, concerts and many more.</p>
+    <p>This web application is built using Viagogo API.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+            You can either click on the link below or click on "Search" tab on the top menu bar to find events.
+        </p>
+        <p>@Html.ActionLink("Search", "Categories", "Event")</p>
+    </div>
+</div>

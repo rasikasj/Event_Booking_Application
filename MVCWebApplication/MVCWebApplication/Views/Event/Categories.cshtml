@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MVCWebApplication.Models.CategoryInfo>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search Category</h2>
+<p>
+    @using (Html.BeginForm("Categories", "Event"))
+    {
+        @Html.TextBox("Category")
+        <input type="submit" value="Submit" class="btn btn-primary" />
+    }
+</p>
+
+@if (Model.Count() > 0)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th></th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>@Html.ActionLink("See Events", "Index", "Event", new { id = item.ID }, null)</td>
+        </tr>
+        }
+        
+    </table>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                No categories found.
+            </th>
+        </tr>
+    </table>
+}
